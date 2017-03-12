@@ -55,4 +55,9 @@ def moviesLoadJoin(request):
         'form': form,
     })
 
+def actor-table(request, actor):
+    name = %(actor)
+    person = Actor.objects.get(name_exact=name)
+    movies = Acted_In.objects.filter(actor_id=person.id).movies
+
 
