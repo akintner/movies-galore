@@ -1,0 +1,10 @@
+<html> <head><title>Movie results</title></head> 
+<h2>Movies and average salary for selected Actor:</h2>
+
+{% for movie in movies %}
+<table>
+  <th>Movie</th><th>Salary</th>
+  <td>{{movie.movie_id.title}}</td><td>{{movie.salary}}</td>
+</table>
+{% endfor %}
+<h4>Average Overall Salary: {% salary_average %}</h4>

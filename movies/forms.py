@@ -1,6 +1,7 @@
 from django import forms
 from movies.models import Movie 
 from movies.models import Actor
+from movies.models import Acted_In
 
 class MovieForm(forms.Form):
   movie_title = forms.CharField(max_length=200, required=True)
@@ -14,3 +15,9 @@ class ActedInForm(forms.Form):
   movie_id = forms.ModelChoiceField(queryset=Movie.objects.all().order_by('title'))
   actor_id = forms.ModelChoiceField(queryset=Actor.objects.all().order_by('name'))
   salary = forms.IntegerField(required=True)
+
+# class SeedDataForm(forms.Form):
+#   seeder.execute()
+  
+class ActorsMoviesForm(forms.Form):
+  actor = forms.ModelChoiceField(queryset=Actor.objects.all().order_by('name'))

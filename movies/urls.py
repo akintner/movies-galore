@@ -8,5 +8,7 @@ urlpatterns = [
     url(r'^load/$', views.moviesLoad, name='load'),
     url(r'^loadactor/', views.moviesLoadActor, name='actor-load'),
     url(r'^loadjoin/', views.moviesLoadJoin, name='acted-in-load'),
-    url(r'^actor-table/', views.table, name='actor-table'),
+    url(r'^seed', views.seed, name='seed'),
+    url(r'^actorchoice/', views.choice, name='actor-choice'),
+    url(r'^table/(?P<search_id>\d+)', views.table, name='actor-table'),
 ]
