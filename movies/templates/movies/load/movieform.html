@@ -1,0 +1,12 @@
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% block content %}
+<h1>Please Enter a Movie into the Database</h1>
+
+<form role='form' action='/movies/' method='post'>
+  {% csrf_token %}
+  {{ form }}
+  <button type='submit'>Submit Movie</button>
+</form>
+{% endblock %}
