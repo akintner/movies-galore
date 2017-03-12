@@ -1,0 +1,10 @@
+<html> <head><title>Actor results</title></head> 
+<body>
+  <h3>Here are all the actors in the database</h3>
+<ul>
+{% for actor in actors %}
+<li> {{ actor.Name}}, born {{ actor.Date_of_birth }} </li>
+{% endfor %}
+</ul>
+</body>  
+</html>
