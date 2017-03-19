@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Please Select and Actor to view his/her movies and average salary</h1>
 
-<form role='form' action='/table/' method='post'>
+<form role='form' action='/movies/actorchoice/' method='post'>
   {% csrf_token %}
   {{ form }}
   <button type='submit'>Submit</button>

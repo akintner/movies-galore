@@ -5,10 +5,10 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^actors/', views.actors, name='actors-index'),
-    url(r'^load/$', views.moviesLoad, name='load'),
+    url(r'^load/', views.moviesLoad, name='load'),
     url(r'^loadactor/', views.moviesLoadActor, name='actor-load'),
     url(r'^loadjoin/', views.moviesLoadJoin, name='acted-in-load'),
     url(r'^seed', views.seed, name='seed'),
-    url(r'^actorchoice/', views.choice, name='actor-choice'),
-    url(r'^table/(?P<search_id>\d+)', views.table, name='actor-table'),
+    url(r'^actortable/', views.choice, name='actor-choice'),
+    url(r'^actortable/(?P<search_id>\d+)', views.table, name='actor-table'),
 ]

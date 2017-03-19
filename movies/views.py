@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Sum
+from django_tables2 import RequestConfig
 
 from movies.models import Movie 
 from movies.models import Actor
@@ -11,6 +12,9 @@ from .forms import ActorForm
 from .forms import ActedInForm
 # from .forms import SeedDataForm
 from .forms import ActorsMoviesForm
+
+from .tables import ActorMoviesTable
+
 
 def index(request):
     movies = Movie.objects.all()
@@ -71,16 +75,14 @@ def moviesLoadJoin(request):
     })
 
 def choice(request):
-    if request.method == 'POST':
-        form = ActorsMoviesForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect(reverse('actor-table'))
-    else:
-        form = ActorsMoviesForm()
-    return render(request, 'movies/choice.html', { 'form': form, })
+    form = ActorsMoviesForm()
+    table = ActorMoviesTable(Acted_In.objects.all())
+    return render(request, 'movies/table.html', { 'form': form, 'table': table, })
         
 def table(request, search_id):
-    salary_average = Acted_In.objects.filter(actor_id=search_id).aggregate(Sum('salary'))
-    movies = Acted_In.objects.filter(actor_id=search_id)
-    return render(request, 'movies/table.html')
+    form = ActorsMoviesForm()
+    movies = Acted_In.objects.filter(actor_id=search_id).order_by('movie_id')
+    for x in movies:
+        table = ActorMoviesTable(Movie.objects.get(pk=x.movie_id))
+    return render(request, 'movies/table.html', { 'form': form, 'table': table, })
 

@@ -6,16 +6,15 @@ from movies.models import Movie, Actor, Acted_In
 seeder = Seed.seeder()
 genres = ['action', 'thriller', 'comedy', 'drama', 'historical drama', 'science fiction', 'romantic comedy', 'horror']
 
-seeder.add_entity(Movie, 100, {
+seeder.add_entity(Movie, 5, {
   'title': seeder.faker.catch_phrase(),
   'genre': random.choice(genres),
 })
 
-seeder.add_entity(Actor, 100, {
+seeder.add_entity(Actor, 10, {
   'name': seeder.faker.name(),
-  'date_of_birth': seeder.faker.profile.birthdate(),
+  'date_of_birth': seeder.faker.birthdate(),
 })
-
 
 seeder.add_entity(Acted_In, 100, {
   'movie_id': random.choice(Movie.objects.all()),

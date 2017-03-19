@@ -1,10 +1,21 @@
-<html> <head><title>Movie results</title></head> 
-<h2>Movies and average salary for selected Actor:</h2>
+{% block content %}
+<h1>Please Select and Actor to view his/her movies and average salary</h1>
 
-{% for movie in movies %}
-<table>
-  <th>Movie</th><th>Salary</th>
-  <td>{{movie.movie_id.title}}</td><td>{{movie.salary}}</td>
-</table>
-{% endfor %}
-<h4>Average Overall Salary: {% salary_average %}</h4>
+<form role='form' action='/movies/actortable/' method='get'>
+  {% csrf_token %}
+  {{ form }}
+  <button type='submit'>Submit</button>
+</form>
+
+{% load render_table from django_tables2 %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+    </head>
+    <body>
+        {% render_table table %}
+    </body>
+</html>
+{% endblock %}
+
