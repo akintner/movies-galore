@@ -15,7 +15,7 @@
 
 * How to run the program from your local browser: if you would like to run the program from your browser, please type `python manage.py runserver` into the terminal and then open up a browser of your choice and type in the following basic URL `localhost:8000/movies` or `http://127.0.0.1:8000/movies`. The following extra paths are also available: 
 
-####Database Endpoints
+#### Database Endpoints
 `localhost:8000/movies` returns a list of all movies in the database  
 `localhost:8000/movies/actors`  returns a list of all actors in the database  
 `localhost:8000/movies/load` loads a new movie into the database  
