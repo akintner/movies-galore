@@ -1,6 +1,14 @@
+{% block content %}
+<h1>Please Select and Actor to view his/her movies and average salary</h1>
+
+<form role='form' action='/movies/actortable/' method='get'>
+  {% csrf_token %}
+  {{ form }}
+  <button type='submit'>Submit</button>
+</form>
+
 {% load render_table from django_tables2 %}
 {% load static %}
-<!doctype html>
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
@@ -9,4 +17,5 @@
         {% render_table table %}
     </body>
 </html>
+{% endblock %}
 

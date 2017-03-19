@@ -74,19 +74,15 @@ def moviesLoadJoin(request):
         'form': form,
     })
 
-# def choice(request):
-#     # if request.method == 'POST':
-#     #     form = ActorsMoviesForm(request.POST)
-#     #     if form.is_valid():
-#     #         return HttpResponseRedirect(reverse('actor-table'))
-#     # else:
-#     form = ActorsMoviesForm()
-#     return render(request, 'movies/choice.html', { 'form': form, })
-        
-def table(request):
-    # salary_average = Acted_In.objects.filter(actor_id=search_id).aggregate(Sum('salary'))
-    # movies = Acted_In.objects.filter(actor_id=search_id)
-    # relationships = Acted_In.objects.all()
+def choice(request):
+    form = ActorsMoviesForm()
     table = ActorMoviesTable(Acted_In.objects.all())
-    return render(request, 'movies/table.html', {'table': table})
+    return render(request, 'movies/table.html', { 'form': form, 'table': table, })
+        
+def table(request, search_id):
+    form = ActorsMoviesForm()
+    movies = Acted_In.objects.filter(actor_id=search_id).order_by('movie_id')
+    for x in movies:
+        table = ActorMoviesTable(Movie.objects.get(pk=x.movie_id))
+    return render(request, 'movies/table.html', { 'form': form, 'table': table, })
 

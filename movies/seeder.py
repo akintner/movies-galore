@@ -11,11 +11,10 @@ seeder.add_entity(Movie, 5, {
   'genre': random.choice(genres),
 })
 
-seeder.add_entity(Actor, 1, {
+seeder.add_entity(Actor, 10, {
   'name': seeder.faker.name(),
   'date_of_birth': seeder.faker.birthdate(),
 })
-
 
 seeder.add_entity(Acted_In, 100, {
   'movie_id': random.choice(Movie.objects.all()),

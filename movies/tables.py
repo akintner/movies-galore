@@ -1,17 +1,13 @@
 import django_tables2 as tables
 from movies.models import Acted_In
+import statistics
 
 class SummingColumn(tables.Column):
     def render_footer(self, bound_column, table):
-        return mean(bound_column.accessor.resolve(row) for row in table.data)
+        return sum((bound_column.accessor.resolve(row) for row in table.data) / bound_column.length)
 
 class ActorMoviesTable(tables.Table):
-    actor_name = tables.Column()
-    movies = tables.Column()
-    salary = tables.Column(footer='Total:')
-    average_salary = SummingColumn()
+    # movies = Acted_In.objects.filter(actor_id=search_id)
+    movie_id = tables.Column()
+    salary = SummingColumn(footer='Total:')
 
-    def total_salary(self, queryset, is_descending):
-        queryset = queryset.annotate(
-            title=Acted_In('salary')
-        )
